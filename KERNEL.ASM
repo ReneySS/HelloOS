@@ -8,18 +8,42 @@ org 100h
 
 inicio:
 	
-	mov di,buffer_teclado
-	call ler_teclado
+	mov si,String1
+	mov di,String2
 	
-	mov si,nova_linha
+	call comparar_strings
+	
+	cmp al,00h
+	jz saoiguais
+	
+	cmp al,01h
+	jz saodiferentes
+	
+saoiguais:
+
+	mov si,StringIguais
 	call escrever_tela
+	jmp fim
+	
+saodiferentes:
+
+	mov si,StringsDiferentes
+	call escrever_tela
+	jmp fim
+
+fim:
 		
-	mov si,buffer_teclado
-	call escrever_tela
-	
 	int 20h
+
+String1        	  db 'abcd.',00h
+String2        	  db 'abcd.',00h
+StringIguais 	  db 'Iguais.',00h
+StringsDiferentes db 'Diferentes.',00h
+
+; *** ROTINAS DO SISTEMA ***
 	
 ler_teclado:
+
 ; Essa rotina e responsável por ler as teclas precionadas. 
 
 _inicio_ler_teclado:
@@ -40,6 +64,7 @@ _inicio_ler_teclado:
 	ret
 	
 escrever_tela:
+
 ; Essa rotina escreve strings na tela do computador. 
 
 	mov ah,0eh
@@ -56,6 +81,46 @@ _inicio_escrever_tela:
 	
 	ret
 	
+comparar_strings:
+
+; Essa rotina compara duas strings, caso sejam iguais AL = 00H
+; casso sejam diferentes AL = 01H. As strings seram apontadas por SI e DI. 
+; 
+
+_inicio_comparar_strings:
+
+	mov al,[si]
+	mov ah,[di]
+
+	inc si
+	inc di
 	
+	cmp al,ah
+	
+	jnz _strings_diferentes
+	jz _strings_iguais
+	
+_strings_diferentes:
+
+	mov al,01h
+	jmp _fim_comparar_strings
+
+_strings_iguais:
+
+	cmp al,00h
+	
+	jnz _inicio_comparar_strings
+	
+	cmp ah,00h
+	
+	jnz _inicio_comparar_strings
+
+	mov al,00h
+	jmp _fim_comparar_strings
+
+_fim_comparar_strings:
+
+	ret
+
 nova_linha     db 0ah,0dh,00h
 buffer_teclado db 00h	
