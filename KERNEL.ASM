@@ -1,44 +1,37 @@
 [bits 16]
 
-; Data de criação: 13/10/2026
+; Data de criação: 13/10/2026 - 10:37:28 
+; Brasil, Itinga do Maranhão - MA.
 ; Autor: Reney Sousa Silva.
 ; Sistema Operacional de 16 bits estilo DOS. 
+;
+; Comando para assembler: nasm -f bin kernel.asm -o kernel.com  
+;					
+; Use o DOSBOX para executar o kernel.com equanto não tem um bootloader
 
 org 100h
 
 inicio:
+		
+	mov di,buffer_teclado
+	call ler_teclado
 	
-	mov si,String1
-	mov di,String2
+	mov si,nova_linha
+	call escrever_tela
 	
+	mov si,buffer_teclado
+	mov di,sair
 	call comparar_strings
 	
 	cmp al,00h
-	jz saoiguais
+	jz comandoSair
 	
-	cmp al,01h
-	jz saodiferentes
+	jmp inicio
+
+comandoSair:
+
+	call sair_do_sistema
 	
-saoiguais:
-
-	mov si,StringIguais
-	call escrever_tela
-	jmp fim
-	
-saodiferentes:
-
-	mov si,StringsDiferentes
-	call escrever_tela
-	jmp fim
-
-fim:
-		
-	int 20h
-
-String1        	  db 'abcd.',00h
-String2        	  db 'abcd.',00h
-StringIguais 	  db 'Iguais.',00h
-StringsDiferentes db 'Diferentes.',00h
 
 ; *** ROTINAS DO SISTEMA ***
 	
@@ -121,6 +114,11 @@ _strings_iguais:
 _fim_comparar_strings:
 
 	ret
+	
+sair_do_sistema:
 
+	int 20h
+
+sair           db 'sair',0dh,00h
 nova_linha     db 0ah,0dh,00h
 buffer_teclado db 00h	
