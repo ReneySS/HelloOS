@@ -8,9 +8,64 @@
 ; Comando para assembler: nasm -f bin kernel.asm -o kernel.com  
 ;					
 ; Use o DOSBOX para executar o kernel.com equanto não tem um bootloader
+;
+; Observação: para executar o KERNEL do sistema no formatao .COM
+; você deve desabilitar a ultima linha de código: 
+;
+; times 1474048 - ($ - $$) db 0x00 - essa linha deve ser desabilitada.
+;
+;
 
 org 100h
 
+	; Mensagem "Kernel "
+	
+	mov ah,0x0E		
+	mov al,0x4B		; codigo ASCII letra 'K'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x65		; codigo ASCII letra 'e'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x72		; codigo ASCII letra 'r'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x6E		; codigo ASCII letra 'n'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x65		; codigo ASCII letra 'e'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x6C		; codigo ASCII letra 'l'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x2E		; codigo ASCII letra '.'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x2E		; codigo ASCII letra '.'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x2E		; codigo ASCII letra '.'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x0A		; codigo ASCII 'NOVA LINHA'
+	int 0x10
+
+	mov ah,0x0E
+	mov al,0x0D		; codigo ASCII 'TECLA ENTER'
+	int 0x10
+
+;---------------------------------------------------------------------------------------	
+	
 inicio:
 		
 	mov di,buffer_teclado
@@ -122,3 +177,5 @@ sair_do_sistema:
 sair           db 'sair',0dh,00h
 nova_linha     db 0ah,0dh,00h
 buffer_teclado db 00h	
+
+times 1474048 - ($ - $$) db 0x00
