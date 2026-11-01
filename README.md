@@ -1,5 +1,7 @@
 <H1>Hello OS.</H1>
 
+<p>Utilizer o NASM para montar o sistema.</p>
+
 Utilize o VirutalBox para dar boot no sistema.
 
 No momento o sistema conta com 2 arquivos: 
