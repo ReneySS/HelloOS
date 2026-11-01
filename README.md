@@ -9,7 +9,7 @@ No momento o sistema conta com 2 arquivos:
 
 Execute o arquivo montar.bat para criar um imagem do sistema. 
 
-01/11/2026 13:49
+<h2>01/11/2026 13:49</h2>
 
 O kernel do sistema dispõe das seguintes rotindas:
 
