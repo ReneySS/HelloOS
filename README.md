@@ -4,8 +4,8 @@ Utilize o VirutalBox para dar boot no sistema.
 
 No momento o sistema conta com 2 arquivos: 
 
-<p>boot.asm - código para carregar o kernel para memóira. </p>
-<p>kernel.asm - código com as rotinas do sistema.</p> 
+<p><b>boot.asm</b> - código para carregar o kernel para memóira. </p>
+<p><b>kernel.asm</b> - código com as rotinas do sistema.</p> 
 
 Execute o arquivo montar.bat para criar um imagem do sistema. 
 
