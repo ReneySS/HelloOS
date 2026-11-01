@@ -13,7 +13,7 @@ Execute o arquivo montar.bat para criar um imagem do sistema.
 
 O kernel do sistema dispõe das seguintes rotindas:
 
-ler_teclado: ler das teclas pressionada para memóira até que o tecla ENTER seja pressionada.
-escrever_tela: escrever um string da memória até encontrar o byte 00h (0x00).
-comparar_strings: comparar duas strings apontadas por SI e DI, retornando o resultado em AL. 
+<p><b>ler_teclado:</b> ler das teclas pressionada para memóira até que o tecla ENTER seja pressionada.
+<p><b>escrever_tela:</b> escrever um string da memória até encontrar o byte 00h (0x00).</p>
+<p><b>comparar_strings:</b> comparar duas strings apontadas por SI e DI, retornando o resultado em AL.</p>
 
