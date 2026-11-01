@@ -9,7 +9,7 @@ No momento o sistema conta com 2 arquivos:
 <p><b>boot.asm</b> - código para carregar o kernel para memóira. </p>
 <p><b>kernel.asm</b> - código com as rotinas do sistema.</p> 
 
-Execute o arquivo montar.bat para criar um imagem do sistema. 
+Execute o arquivo <b>montar.bat</b> para criar um imagem do sistema. 
 
 <h2>01/11/2026 13:49</h2>
 
